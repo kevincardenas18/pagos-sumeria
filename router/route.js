@@ -3,7 +3,7 @@ const route = express();
 const paypal = require("paypal-rest-sdk");
 const queryString = require("query-string");
 
-// Comentario
+
 paypal.configure({
     'mode': 'sandbox',
     'client_id': process.env.CLIENT_ID,
@@ -23,7 +23,7 @@ route.get('/createpaypalpayment', async (req, res) => {
         /// "https://us-central1-paypal.cloudfunctions.net/paypalTestPaymentExecute",
         /// 
         "redirect_urls": {
-            "return_url": `http://localhost:3009/execute?amount=${amount}&currency=${currency}`,
+            "return_url": `https://pagos-sumeria-d9243e3fece9.herokuapp.com/execute?amount=${amount}&currency=${currency}`,
             "cancel_url": "http://cancel.url"
         },
         "transactions": [{
@@ -80,7 +80,6 @@ route.get('/execute', async (req, res) => {
             throw error;
         } else {
             console.log(JSON.stringify(payment));
-            // JSON
             res.redirect("http://return_url/?status=success&id=" + payment.id + "&state=" + payment.state + "&payer_info_email=" + payment.payer.payer_info.email + "&amount=" + payment.transactions[0].amount.total + "&date=" + payment.update_time );
         }
     });
