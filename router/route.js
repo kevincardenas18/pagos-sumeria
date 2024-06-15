@@ -3,7 +3,7 @@ const route = express();
 const paypal = require("paypal-rest-sdk");
 const queryString = require("query-string");
 
-
+// Comentario
 paypal.configure({
     'mode': 'sandbox',
     'client_id': process.env.CLIENT_ID,
