@@ -81,7 +81,7 @@ route.get('/execute', async (req, res) => {
         } else {
             console.log(JSON.stringify(payment));
             // JSON
-            const redirectUrl = `http://return_url/?status=success&id=${payment.id}&state=${payment.state}&payer_info_email=${payment.payer.payer_info.email}&amount=${payment.transactions[0].amount.total}&date=${payment.update_time}`;
+            res.redirect("http://return_url/?status=success&id=" + payment.id + "&state=" + payment.state + "&payer_info_email=" + payment.payer.payer_info.email + "&amount=" + payment.transactions[0].amount.total + "&date=" + payment.update_time );
         }
     });
 });
